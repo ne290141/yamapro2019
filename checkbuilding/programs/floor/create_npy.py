@@ -3,17 +3,13 @@ import os, glob
 import numpy as np
 import random, math
 
-#画像が保存されているルートディレクトリのパス
 root_dir = "../../images/floor"
 
 categories = ["2", "9", "10"]
 
-# 画像データ用配列
 X = []
-# ラベルデータ用配列
 Y = []
 
-#画像データごとにadd_sample()を呼び出し、X,Yの配列を返す関数
 def make_sample(files):
     global X, Y
     X = []
@@ -22,8 +18,6 @@ def make_sample(files):
         add_sample(cat, fname)
     return np.array(X), np.array(Y)
 
-#渡された画像データを読み込んでXに格納し、また、
-#画像データに対応するcategoriesのidxをY格納する関数
 def add_sample(cat, fname):
     img = Image.open(fname)
     img = img.convert("RGB")
@@ -32,19 +26,14 @@ def add_sample(cat, fname):
     X.append(data)
     Y.append(cat)
 
-#全データ格納用配列
 allfiles = []
 
-#カテゴリ配列の各値と、それに対応するidxを認識し、全データをallfilesにまとめる
 for idx, cat in enumerate(categories):
     image_dir = root_dir+"/"+cat
-    files = glob.glob(image_dir + "/*.jpeg")
+    files = glob.glob(image_dir + "/*.jpg")
     for f in files:
         allfiles.append((idx, f))
 
-#シャッフル後、学習データと検証データに分ける
-
-#IOエラーの可能性がある。
 random.shuffle(allfiles)
 th = math.floor(len(allfiles) * 0.8)
 train = allfiles[0:th]
