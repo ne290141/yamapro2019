@@ -12,7 +12,7 @@ categories = ["2", "9", "10"]
 while True:
     root = tkinter.Tk()
     root.withdraw()
-    iDir = '../../images/floor'
+    iDir = '../../images/test_data/'
     file = tkinter.filedialog.askopenfilename(initialdir=iDir)
 
     img = image.load_img(file, target_size=(150, 150, 3))

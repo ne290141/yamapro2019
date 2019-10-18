@@ -10,7 +10,7 @@ model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation="relu"))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Flatten())
-model.add(layers.Dense(512, activation="relu"))
+model.add(layers.Dense(516, activation="relu"))
 model.add(layers.Dense(3, activation="sigmoid"))
 
 from keras import optimizers
@@ -38,12 +38,12 @@ y_test = np_utils.to_categorical(y_test, nb_classes)
 model = model.fit(X_train,
                   y_train,
                   epochs=10,
-                  batch_size=7,
+                  batch_size=30,
                   validation_data=(X_test, y_test))
 
 import matplotlib.pyplot as plt
 import os
-os.environ['KMP_DUPLICATE_LIB_OK']='True'
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 acc = model.history['acc']
 val_acc = model.history['val_acc']
